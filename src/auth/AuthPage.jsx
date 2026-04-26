@@ -49,7 +49,7 @@ const AuthPage = () => {
           {isLogin ? "Admin Login" : "Admin Register"}
         </h2>
         <p className="text-gray-500 text-sm mb-6">
-          {isLogin ? "Apna account access karo" : "Naya admin account banao"}
+          {isLogin ? "" : "Create a new admin account to manage the dashboard."}
         </p>
 
         {error && (
