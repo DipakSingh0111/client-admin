@@ -1,13 +1,12 @@
 import { useState, useEffect } from "react";
-import useToast from "./useToast";
+
 import { deleteProduct, getAllProducts } from "./productApi";
-// import { getAllProducts, deleteProduct } from "./productApi.js";
-// import useToast from "./useToast.js";
+import UseToast from "./UseToast";
 
 const ProductList = ({ onEdit, refresh }) => {
   const [products, setProducts] = useState([]);
   const [loading, setLoading] = useState(false);
-  const { showMessage, Toast } = useToast();
+  const { showMessage, Toast } = UseToast();
 
   useEffect(() => {
     fetchProducts();

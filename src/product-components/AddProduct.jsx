@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { addProduct } from "./productApi.js";
-import useToast from "./useToast.jsx";
+import UseToast from "./UseToast.jsx";
 
 const CATEGORIES = [
   "Electronics",
@@ -25,7 +25,7 @@ const AddProduct = ({ onProductAdded }) => {
   const [images, setImages] = useState([null, null, null, null]);
   const [previews, setPreviews] = useState([null, null, null, null]);
   const [loading, setLoading] = useState(false);
-  const { showMessage, Toast } = useToast();
+  const { showMessage, Toast } = UseToast();
 
   const handleChange = (e) =>
     setFormData((prev) => ({ ...prev, [e.target.name]: e.target.value }));

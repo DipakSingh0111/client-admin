@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-const useToast = () => {
+const UseToast = () => {
   const [message, setMessage] = useState({ text: "", type: "" });
 
   const showMessage = (text, type = "success") => {
@@ -22,4 +22,4 @@ const useToast = () => {
   return { showMessage, Toast };
 };
 
-export default useToast;
+export default UseToast;
