@@ -34,9 +34,8 @@ const AuthPage = () => {
       }
       navigate("/admin");
     } catch (err) {
-      setError(
-        err.response?.data?.message || "Invalid Credentials. Please try again.",
-      );
+      console.log(err.response?.data);
+      setError(err.response?.data?.message || "Something went wrong");
     } finally {
       setLoading(false);
     }
