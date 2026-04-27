@@ -21,21 +21,27 @@ const AuthPage = () => {
     e.preventDefault();
     setLoading(true);
     setError("");
+
     try {
+      let data;
+
       if (isLogin) {
-        const { data } = await loginApi({
+        const res = await loginApi({
           email: formData.email,
           password: formData.password,
         });
-        localStorage.setItem("adminToken", data.token);
+        data = res.data;
       } else {
-        const { data } = await registerApi(formData);
-        localStorage.setItem("adminToken", data.token);
+        const res = await registerApi(formData);
+        data = res.data;
       }
+
+      localStorage.setItem("adminToken", data.token);
+      localStorage.setItem("adminInfo", JSON.stringify(data.admin));
+
       navigate("/admin");
     } catch (err) {
-      console.log("ERROR FULL:", err);
-      console.log("ERROR RESPONSE:", err.response?.data);
+      console.log("ERROR:", err.response?.data);
 
       setError(
         err.response?.data?.message ||
