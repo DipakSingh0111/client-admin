@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const BASE_URL = "http://localhost:8080/api/products";
+const BASE_URL = "https://admin-backend-red.vercel.app/api/products";
 
 export const getAllProducts = () => axios.get(BASE_URL);
 

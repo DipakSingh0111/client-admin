@@ -4,8 +4,8 @@ import EditProduct from "./EditProduct.jsx";
 import ProductList from "./ProductList.jsx";
 
 const ProductPage = () => {
-  const [editingProduct, setEditingProduct] = useState(null); // null = add mode
-  const [refresh, setRefresh] = useState(0); // increment karo to trigger list reload
+  const [editingProduct, setEditingProduct] = useState(null);
+  const [refresh, setRefresh] = useState(0);
 
   const triggerRefresh = () => setRefresh((prev) => prev + 1);
 
