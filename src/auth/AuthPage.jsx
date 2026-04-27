@@ -34,8 +34,15 @@ const AuthPage = () => {
       }
       navigate("/admin");
     } catch (err) {
-      console.log(err.response?.data);
-      setError(err.response?.data?.message || "Something went wrong");
+      console.log("ERROR FULL:", err);
+      console.log("ERROR RESPONSE:", err.response?.data);
+
+      setError(
+        err.response?.data?.message ||
+          err.response?.data?.error ||
+          err.message ||
+          "Something went wrong",
+      );
     } finally {
       setLoading(false);
     }
