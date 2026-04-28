@@ -4,16 +4,18 @@ import axios from "axios";
 const BASE_URL = "https://admin-backend-red.vercel.app/api";
 
 const StatCard = ({ title, value, icon, loading }) => (
-  <div className="bg-white p-5 rounded-xl shadow">
-    <div className="flex items-center justify-between mb-2">
-      <h3 className="text-gray-500 text-sm font-medium">{title}</h3>
-      <span className="text-2xl">{icon}</span>
+  <div className="bg-white p-4 rounded-xl border border-gray-100 shadow-sm flex items-center gap-4">
+    <div className="text-3xl flex-shrink-0">{icon}</div>
+    <div className="min-w-0">
+      <h3 className="text-gray-500 text-xs font-medium uppercase tracking-wide truncate">
+        {title}
+      </h3>
+      {loading ? (
+        <div className="h-6 w-20 bg-gray-100 animate-pulse rounded mt-1" />
+      ) : (
+        <p className="text-lg font-bold text-gray-800 mt-0.5">{value}</p>
+      )}
     </div>
-    {loading ? (
-      <div className="h-7 w-24 bg-gray-100 animate-pulse rounded mt-1" />
-    ) : (
-      <p className="text-xl font-bold text-gray-800">{value}</p>
-    )}
   </div>
 );
 
@@ -24,12 +26,9 @@ const Dashboard = () => {
     revenue: 0,
   });
   const [loading, setLoading] = useState(true);
-
-  // 👇 NEW STATE
   const [admin, setAdmin] = useState(null);
 
   useEffect(() => {
-    // 👇 GET ADMIN FROM LOCALSTORAGE
     const storedAdmin = localStorage.getItem("adminInfo");
     if (storedAdmin) {
       setAdmin(JSON.parse(storedAdmin));
@@ -40,7 +39,6 @@ const Dashboard = () => {
         const [productsRes] = await Promise.all([
           axios.get(`${BASE_URL}/products`),
         ]);
-
         setStats({
           totalProducts: productsRes.data.total || 0,
           totalOrders: 0,
@@ -57,15 +55,20 @@ const Dashboard = () => {
   }, []);
 
   return (
-    <div>
-      <h1 className="text-2xl font-semibold">Dashboard</h1>
+    <div className="p-4 sm:p-6">
+      <div className="mb-6">
+        <h1 className="text-xl sm:text-2xl font-semibold text-gray-800">
+          Dashboard
+        </h1>
+        <p className="text-gray-500 text-sm mt-1">
+          Welcome back 👋{" "}
+          <span className="font-medium text-gray-700">
+            {admin?.username || "Admin"}
+          </span>
+        </p>
+      </div>
 
-      {/* 👇 ADMIN NAME SHOW */}
-      <p className="text-gray-600 mt-2">
-        Welcome back 👋 {admin?.username || "Admin"}
-      </p>
-
-      <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 mt-6">
+      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-3 sm:gap-4">
         <StatCard
           title="Total Products"
           value={stats.totalProducts}
