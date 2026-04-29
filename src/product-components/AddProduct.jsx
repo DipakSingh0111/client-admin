@@ -81,7 +81,7 @@ const AddProduct = ({ onProductAdded }) => {
       <Toast />
       <div className="max-w-2xl mx-auto bg-white rounded-2xl shadow-sm border border-gray-100 p-5 sm:p-8">
         <h2 className="text-lg sm:text-xl font-semibold text-gray-800 mb-6 pb-4 border-b border-gray-100">
-          ➕ Naya Product Add Karo
+          ➕ Add New Product.
         </h2>
 
         <form onSubmit={handleSubmit} className="space-y-5">

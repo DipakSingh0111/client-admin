@@ -33,7 +33,7 @@ const ProductList = ({ onEdit, refresh }) => {
       return;
     try {
       await deleteProduct(id);
-      showMessage("Product delete ho gaya! ✓");
+      showMessage("Product deleted successfully.");
       fetchProducts();
     } catch (err) {
       showMessage(
